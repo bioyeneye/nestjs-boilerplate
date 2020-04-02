@@ -1,0 +1,24 @@
+{
+    "type": "mssql",
+    "host": "localhost",
+    "username": "sa",
+    "password": "Password1@",
+    "database": "NestBoilerplate",
+    "synchronize": true,
+    "logging": true,
+    "migrationsTableName": "custom_migration_table",
+    "entities": [
+       "src/database/entities/**/*entity.ts"
+    ],
+    "migrations": [
+       "src/database/migrations/**/*.ts"
+    ],
+    "subscribers": [
+       "src/database/subscribers/**/*subscriber.ts"
+    ],
+    "cli": {
+       "entitiesDir": "src/database/entity",
+       "migrationsDir": "src/database/migration",
+       "subscribersDir": "src/database/subscriber"
+    }
+ }
