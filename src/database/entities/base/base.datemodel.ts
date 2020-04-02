@@ -1,4 +1,4 @@
-import { BaseAutoModel } from "./BaseAutoModel";
+import { BaseAutoModel } from "./base.automodel";
 import { BeforeInsert, Column, BeforeUpdate } from "typeorm";
 
 export class BaseDateModel extends BaseAutoModel{

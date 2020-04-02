@@ -1,8 +1,11 @@
 import { Entity, Column } from "typeorm";
-import { BaseDateModel } from "./base/BaseDateModel";
+import { BaseDateModel } from "./base/base.datemodel";
 
-@Entity()
+@Entity({name: 'users'})
 export class User extends BaseDateModel {
+
+    @Column()
+    userName: string;
 
     @Column()
     firstName: string;
@@ -10,6 +13,18 @@ export class User extends BaseDateModel {
     @Column()
     lastName: string;
 
-    @Column({ default: true })
-    isActive: boolean;
+    @Column()
+    phoneNumber: string;
+
+    @Column({ default: false })
+    phoneNumberConfirmed: boolean;
+
+    @Column({ name: 'email', unique: true })
+    email!: string;
+
+    @Column({ default: false })
+    emailConfirmed: boolean;
+
+    @Column()
+    passwordHash: string;
 }
