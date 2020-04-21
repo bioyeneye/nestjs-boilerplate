@@ -27,6 +27,7 @@
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/swagger": "^4.5.1",
     "@nestjs/typeorm": "^7.0.0",
+    "compression": "^1.7.4",
     "mssql": "^6.2.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
