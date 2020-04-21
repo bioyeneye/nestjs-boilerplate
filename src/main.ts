@@ -6,6 +6,7 @@ import {
     NestExpressApplication,
 } from '@nestjs/platform-express';
 import { ApplicationConfiguration } from './config/application.config';
+import { HttpExceptionFilter } from './shared/filter/http-exception.filter';
 
 async function bootstrap() {
     //const app = await NestFactory.create(AppModule);
@@ -19,7 +20,7 @@ async function bootstrap() {
     
     //configurations
     ApplicationConfiguration.init(app);
-    //app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalFilters(new HttpExceptionFilter());
 
     await app.listen(AppModule.port, () => {
         Logger.log(

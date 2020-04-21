@@ -5,11 +5,12 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { EnvironmentConfigService } from './config/environment.config';
 import { AppConfiguration } from './config/config.enum';
+import { SharedModule } from './shared/shared.module';
 
 @Module({
     controllers: [AppController],
     providers: [AppService, EnvironmentConfigService],
-    imports: [ConfigModule.forRoot(), DatabaseModule.forRoot()],
+    imports: [ConfigModule.forRoot(), DatabaseModule.forRoot(), SharedModule],
 })
 export class AppModule {
     static host: string;
