@@ -1,5 +1,6 @@
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { INestApplication } from '@nestjs/common';
+import { SecuritySchemeObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 
 export interface SwaggerDocumentationConfigModel {
     title: string;
@@ -15,6 +16,13 @@ const apimodel: SwaggerDocumentationConfigModel = {
     tags: process.env.SWAGGER_tags || 'api tags'
 }
 
+const swaggerSecuritySchemeObject : SecuritySchemeObject = {
+    type: "http",
+    bearerFormat: 'Bearer {token}',
+    name: 'Bearer',
+    scheme: 'Bearer'
+}
+
 export class SwaggerDocumentationConfig {
     public static init(app: INestApplication) {
         const options = new DocumentBuilder()
@@ -22,6 +30,7 @@ export class SwaggerDocumentationConfig {
             .setDescription(apimodel.description)
             .setVersion(apimodel.version)
             .addTag(apimodel.tags)
+            .addBearerAuth()
             .build();
 
         const document = SwaggerModule.createDocument(app, options);
