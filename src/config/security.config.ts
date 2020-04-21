@@ -2,6 +2,7 @@ import { INestApplication } from "@nestjs/common";
 import * as RateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
 import * as csurf from 'csurf';
+import * as cookieParser from 'cookie-parser';
 
 export class SecurityConfig {
 
@@ -12,12 +13,13 @@ export class SecurityConfig {
     public static init(app: INestApplication) {
         app.use(helmet());
         app.enableCors();
-        app.use(csurf());
         app.use(
             new RateLimit({
                 windowMs: 15 * 60 * 1000, // 15 minutes
                 max: 100, // limit each IP to 100 requests per windowMs
             }),
         );
+        app.use(cookieParser());
+        app.use(csurf({ cookie: true }));
     }
 }

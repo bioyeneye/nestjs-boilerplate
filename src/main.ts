@@ -19,7 +19,7 @@ async function bootstrap() {
     
     //configurations
     ApplicationConfiguration.init(app);
-    app.useGlobalPipes(new ValidationPipe());
+    //app.useGlobalPipes(new ValidationPipe());
 
     await app.listen(AppModule.port, () => {
         Logger.log(

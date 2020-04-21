@@ -6,7 +6,13 @@ import { SecurityConfig } from "./security.config";
 
 export class ApplicationConfiguration {
     public static init(app: INestApplication) {
-        app.enableCors();
+        app.enableCors({
+            origin: true,
+            credentials: true,
+            maxAge: 3600,
+            optionsSuccessStatus: 200,
+            exposedHeaders: ['Authorization'],
+          });
         app.use(compression());
         app.use(morgan('combined'));
 

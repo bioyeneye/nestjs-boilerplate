@@ -8,7 +8,7 @@ import { AppConfiguration } from './config/config.enum';
 
 @Module({
     controllers: [AppController],
-    providers: [AppService],
+    providers: [AppService, EnvironmentConfigService],
     imports: [ConfigModule.forRoot(), DatabaseModule.forRoot()],
 })
 export class AppModule {
