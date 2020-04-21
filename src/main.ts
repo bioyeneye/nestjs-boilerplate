@@ -1,11 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { SwaggerDocumentationConfig } from './config/swagger';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import {
     ExpressAdapter,
     NestExpressApplication,
 } from '@nestjs/platform-express';
+import { ApplicationConfiguration } from './config/application.config';
 
 async function bootstrap() {
     //const app = await NestFactory.create(AppModule);
@@ -14,11 +14,12 @@ async function bootstrap() {
         new ExpressAdapter(),
         { cors: true },
     );
+
+    app.set('trust proxy', 1); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
     
     //configurations
-    //app.enableCors();
+    ApplicationConfiguration.init(app);
     app.useGlobalPipes(new ValidationPipe());
-    SwaggerDocumentationConfig.init(app);
 
     await app.listen(AppModule.port, () => {
         Logger.log(

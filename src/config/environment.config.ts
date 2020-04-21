@@ -1,8 +1,7 @@
-import { Injectable, INestApplication } from "@nestjs/common";
-import * as compression from 'compression';
+import { Injectable, INestApplication } from '@nestjs/common';
 
 @Injectable()
-export class AppConfigService {
+export class EnvironmentConfigService {
     private environmentHosting: string = process.env.NODE_ENV || 'development';
 
     get(name: string): string {
@@ -11,10 +10,5 @@ export class AppConfigService {
 
     get isDevelopment(): boolean {
         return this.environmentHosting === 'development';
-    }
-
-    public static init(app: INestApplication) {
-        app.enableCors();
-        app.use(compression());
     }
 }

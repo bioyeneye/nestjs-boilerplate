@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
-import { AppConfigService } from './config/app.config';
+import { EnvironmentConfigService } from './config/environment.config';
 import { AppConfiguration } from './config/config.enum';
 
 @Module({
@@ -16,7 +16,7 @@ export class AppModule {
     static port: number | string;
     static isDev: boolean;
 
-    constructor(private readonly _configurationService: AppConfigService) {
+    constructor(private readonly _configurationService: EnvironmentConfigService) {
         AppModule.port = AppModule.normalizePort(
             _configurationService.get(AppConfiguration.PORT),
         );
