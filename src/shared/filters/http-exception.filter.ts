@@ -1,5 +1,5 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
-import { ApiException } from '../model/api-exception.model';
+import { ApiException } from '../models/api-exception.model';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {

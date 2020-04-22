@@ -1,18 +1,18 @@
 import {EventSubscriber, EntitySubscriberInterface, InsertEvent} from "typeorm";
-import { User } from "../entities/user.entity";
+import { UserEntity } from "../entities/user.entity";
 
 @EventSubscriber()
-export class UserSubscriber implements EntitySubscriberInterface<User> {
+export class UserSubscriber implements EntitySubscriberInterface<UserEntity> {
 
     listenTo() {
-        return User;
+        return UserEntity;
     }
 
-    beforeInsert(event: InsertEvent<User>) {
+    beforeInsert(event: InsertEvent<UserEntity>) {
         console.log(`BEFORE user INSERTED: `, event.entity);
     }
 
-    afterInsert(event: InsertEvent<User>) {
+    afterInsert(event: InsertEvent<UserEntity>) {
         console.log(`After user INSERTED: `, event.entity);
     }
 }

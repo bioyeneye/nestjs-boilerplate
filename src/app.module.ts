@@ -4,24 +4,35 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { EnvironmentConfigService } from './config/environment.config';
-import { AppConfiguration } from './config/config.enum';
+import { AppConfigurationEnum } from './config/config.enum';
 import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { UserModule } from './modules/user/user.module';
+import { AuthService } from './modules/auth/auth.service';
 
 @Module({
     controllers: [AppController],
     providers: [AppService, EnvironmentConfigService],
-    imports: [ConfigModule.forRoot(), DatabaseModule.forRoot(), SharedModule],
+    imports: [
+        ConfigModule.forRoot(),
+        DatabaseModule.forRoot(),
+        SharedModule,
+        AuthModule,
+        UserModule,
+    ],
 })
 export class AppModule {
     static host: string;
     static port: number | string;
     static isDev: boolean;
 
-    constructor(private readonly _configurationService: EnvironmentConfigService) {
+    constructor(
+        private readonly _configurationService: EnvironmentConfigService,
+    ) {
         AppModule.port = AppModule.normalizePort(
-            _configurationService.get(AppConfiguration.PORT),
+            _configurationService.get(AppConfigurationEnum.PORT),
         );
-        AppModule.host = _configurationService.get(AppConfiguration.HOST);
+        AppModule.host = _configurationService.get(AppConfigurationEnum.HOST);
         AppModule.isDev = _configurationService.isDevelopment;
     }
 

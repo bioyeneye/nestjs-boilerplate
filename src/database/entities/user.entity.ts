@@ -2,7 +2,7 @@ import { Entity, Column } from "typeorm";
 import { BaseDateModel } from "./base/base.datemodel";
 
 @Entity({name: 'users'})
-export class User extends BaseDateModel {
+export class UserEntity extends BaseDateModel {
 
     @Column()
     userName: string;
