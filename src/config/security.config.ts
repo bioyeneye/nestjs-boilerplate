@@ -12,7 +12,6 @@ export class SecurityConfig {
      */
     public static init(app: INestApplication) {
         app.use(helmet());
-        app.enableCors();
         app.use(
             new RateLimit({
                 windowMs: 15 * 60 * 1000, // 15 minutes
@@ -20,6 +19,7 @@ export class SecurityConfig {
             }),
         );
         app.use(cookieParser());
-        app.use(csurf({ cookie: true }));
+        //app.use(csurf({ cookie: true }));
+
     }
 }

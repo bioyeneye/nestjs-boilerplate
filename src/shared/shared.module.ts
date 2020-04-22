@@ -1,6 +1,9 @@
 import { Global, HttpModule, Module } from '@nestjs/common';
+import { AuthUserInterceptor } from './interceptors/auth-user-interceptor.service';
 
-const providers = [];
+const providers = [
+    //AuthUserInterceptor
+];
 
 @Global()
 @Module({

@@ -13,18 +13,19 @@ export class UserDto {
     lastName: string;
 
     @ApiPropertyOptional()
-    username: string;
+    userName: string;
 
     @ApiPropertyOptional()
     email: string;
 
     @ApiPropertyOptional()
-    phone: string;
+    phoneNumber: string;
 
     constructor(user: UserEntity) {
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.email = user.email;
-        this.phone = user.phoneNumber;
+        this.phoneNumber = user.phoneNumber;
+        this.userName = user.userName;
     }
 }
