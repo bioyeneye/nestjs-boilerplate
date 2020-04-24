@@ -22,6 +22,7 @@ async function bootstrap() {
     ApplicationConfiguration.init(app);
     app.setGlobalPrefix('api');
     app.useGlobalFilters(new HttpExceptionFilter());
+    app.useGlobalPipes(new ValidationPipe());
 
     await app.listen(AppModule.port, () => {
         Logger.log(

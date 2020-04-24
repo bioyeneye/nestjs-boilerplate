@@ -19,6 +19,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { UserEntity } from 'src/database/entities/user.entity';
 import { AuthUserInterceptor } from 'src/shared/interceptors/auth-user-interceptor.service';
 import { AuthUser } from 'src/shared/decorators/auth-user.decorator';
+import { UserRegisterDto } from '../user/dto/user-register.dto';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -28,7 +29,20 @@ export class AuthController {
         public readonly authService: AuthService,
     ) {}
 
-    @Post('connect/token')
+    @Post('register')
+    @HttpCode(HttpStatus.OK)
+    @ApiOkResponse({ type: UserDto, description: 'Successfully Registered' })
+    async userRegister(
+        @Body() userRegisterDto: UserRegisterDto,
+    ): Promise<UserDto> {
+        const createdUser = await this.userService.createUser(
+            userRegisterDto,
+        );
+
+        return new UserDto(createdUser);
+    }
+
+    @Post('login')
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({
         type: TokenPayloadDto,
@@ -37,9 +51,10 @@ export class AuthController {
     async userLogin(@Body() model: UserLoginDto): Promise<TokenPayloadDto> {
         const userEntity = await this.authService.validateUser(model);
         const token = await this.authService.createToken(userEntity);
-        //return new LoginPayloadDto(new UserDto(userEntity), token);
         return token;
     }
+
+
 
     @Get('me')
     @HttpCode(HttpStatus.OK)

@@ -1865,6 +1865,13 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+class-validator-password-check@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/class-validator-password-check/-/class-validator-password-check-1.0.7.tgz#e0a9770e1e919d6799425e9d443ef2c4a9bfd3ab"
+  integrity sha512-wM5LvlW+lypGb+nfEXWTvOKq6q2E8LvCNMEZM4AVhvTEiRDsOtTg+2FWA1pQXOX6jMpLLY2Q6+UcE2hU6CDZZw==
+  dependencies:
+    class-validator "^0.12.1"
+
 class-validator@^0.12.1:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.12.1.tgz#9e89a9b7e8288ac07e0b9f5586cc089369d22790"
