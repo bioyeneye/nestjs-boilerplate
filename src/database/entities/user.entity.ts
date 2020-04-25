@@ -1,8 +1,10 @@
-import { Entity, Column } from "typeorm";
-import { BaseDateModel } from "./base/base.datemodel";
+import { Entity, Column, OneToMany } from "typeorm";
+import { BaseDateWithUpdateModel } from "./base/base-datewithupdate.model";
+import { EmailVerificationEntity } from "./email-verification.entity";
+import { SmsVerificationEntity } from "./sms-verification.entity";
 
 @Entity({name: 'users'})
-export class UserEntity extends BaseDateModel {
+export class UserEntity extends BaseDateWithUpdateModel {
 
     @Column()
     userName: string;
@@ -27,4 +29,23 @@ export class UserEntity extends BaseDateModel {
 
     @Column()
     passwordHash: string;
+
+    @Column({nullable: true})
+    phonenumberverificationcode?: string;
+
+    @Column({nullable: true})
+    emailverificationtoke?: string;
+
+    @Column({nullable: true})
+    dob?: Date
+
+    @Column({default: false})
+    accountLock?: boolean;
+
+    @OneToMany(type => EmailVerificationEntity, email => email.user)
+    EmailVerifications: EmailVerificationEntity[];
+
+    @OneToMany(type => SmsVerificationEntity, sms => sms.user)
+    SmsVerifications: SmsVerificationEntity[];
+    
 }

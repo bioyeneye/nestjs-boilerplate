@@ -7,6 +7,7 @@ import {
     Post,
     UseGuards,
     UseInterceptors,
+    Req,
 } from '@nestjs/common';
 import { ApiTags, ApiOkResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { UserService } from '../user/user.service';
@@ -20,6 +21,7 @@ import { UserEntity } from 'src/database/entities/user.entity';
 import { AuthUserInterceptor } from 'src/shared/interceptors/auth-user-interceptor.service';
 import { AuthUser } from 'src/shared/decorators/auth-user.decorator';
 import { UserRegisterDto } from '../user/dto/user-register.dto';
+import { Request, json } from 'express';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -33,8 +35,10 @@ export class AuthController {
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({ type: UserDto, description: 'Successfully Registered' })
     async userRegister(
+        @Req() request: Request,
         @Body() userRegisterDto: UserRegisterDto,
     ): Promise<UserDto> {
+        console.log(`request: ${request.ips}`);
         const createdUser = await this.userService.createUser(
             userRegisterDto,
         );
@@ -48,7 +52,7 @@ export class AuthController {
         type: TokenPayloadDto,
         description: 'User info with access token',
     })
-    async userLogin(@Body() model: UserLoginDto): Promise<TokenPayloadDto> {
+    async userLogin(@Req() request: Request, @Body() model: UserLoginDto): Promise<TokenPayloadDto> {
         const userEntity = await this.authService.validateUser(model);
         const token = await this.authService.createToken(userEntity);
         return token;

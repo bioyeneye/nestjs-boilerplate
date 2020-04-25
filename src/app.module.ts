@@ -11,6 +11,7 @@ import { UserModule } from './modules/user/user.module';
 import { AuthService } from './modules/auth/auth.service';
 import { JwtStrategy } from './modules/auth/jwt.strategy';
 import { contextMiddleware } from './shared/middleware/context.middelware';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
     controllers: [AppController],
@@ -21,9 +22,28 @@ import { contextMiddleware } from './shared/middleware/context.middelware';
         SharedModule,
         AuthModule,
         UserModule,
+        MailerModule.forRootAsync({
+            useFactory: () => ({
+                service: 'gmail',
+                transport: {
+                    host: process.env.SMTP_HOST || 'smtp.gmail.com',
+                    port: parseInt(process.env.SMTP_PORT, 10) || 465,
+                    secure: process.env.SMTP_SECURE || true,
+                    //ignoreTLS: true, //process.env.SMTP_SECURE !== 'false',
+                    auth: {
+                        user: process.env.SMTP_AUTH_USER || '',
+                        pass: process.env.SMTP_AUTH_PASS || '',
+                    },
+                },
+                defaults: {
+                    from: '"nest-boilerplate" <email@nestjsboilerplate.com>',
+                },
+                template: {},
+            }),
+        }),
     ],
 })
-export class AppModule implements NestModule{
+export class AppModule implements NestModule {
     static host: string;
     static port: number | string;
     static isDev: boolean;

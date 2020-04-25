@@ -32,7 +32,7 @@ export class SwaggerDocumentationConfig {
             .setVersion(apimodel.version)
             .addTag(apimodel.tags)
             .addBearerAuth()
-            .setBasePath('/api')
+            //.setBasePath('/api')
             .build();
 
         const document = SwaggerModule.createDocument(app, options);

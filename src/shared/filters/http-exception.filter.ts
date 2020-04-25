@@ -1,5 +1,6 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { ApiException } from '../models/api-exception.model';
+import { ResponseError } from '../models/success-response.model';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -15,13 +16,16 @@ export class HttpExceptionFilter implements ExceptionFilter {
             }
         }
 
-        var errorFormatted: ApiException = {
+        var errorFormatted: ResponseError = {
             statusCode: error.getStatus(),
             error: error.response.name || error.response.error || error.name,
             message: error.response.message || error.response || error.message,
             errors: error.response.errors || null,
             timestamp: new Date().toISOString(),
             path: req ? req.url : null,
+            data: null,
+            errorMessage: error.response.message || error.response || error.message,
+            success: false
         }
 
         res.status(error.getStatus()).json(errorFormatted);

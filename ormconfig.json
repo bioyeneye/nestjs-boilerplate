@@ -4,7 +4,7 @@
     "username": "sa",
     "password": "Password1@",
     "database": "NestBoilerplate",
-    "synchronize": true,
+    "synchronize": false,
     "logging": true,
     "migrationsTableName": "custom_migration_table",
     "entities": [
