@@ -15,7 +15,7 @@ export class EncryptionService {
      * generate random string
      * @param length
      */
-    static generateRandomString(length: number = 36) {
+    static generateRandomString(length = 36) {
         return Math.random()
             .toString(length)
             .replace(/[^a-zA-Z0-9]+/g, '')

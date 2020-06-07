@@ -2,50 +2,63 @@ import { Entity, Column, OneToMany } from "typeorm";
 import { BaseDateWithUpdateModel } from "./base/base-datewithupdate.model";
 import { EmailVerificationEntity } from "./email-verification.entity";
 import { SmsVerificationEntity } from "./sms-verification.entity";
+import {RoleType} from "../../shared/constants/role-type";
+import {AuditTrail} from "./audittrail.entity";
 
-@Entity({name: 'users'})
+@Entity({name: 'Users'})
 export class UserEntity extends BaseDateWithUpdateModel {
 
     @Column()
-    userName: string;
+    UserName: string;
 
     @Column()
-    firstName: string;
+    FirstName: string;
 
     @Column()
-    lastName: string;
+    LastName: string;
 
     @Column()
-    phoneNumber: string;
+    PhoneNumber: string;
 
     @Column({ default: false })
-    phoneNumberConfirmed: boolean;
+    PhoneNumberConfirmed: boolean;
 
     @Column({ name: 'email', unique: true })
-    email!: string;
+    Email!: string;
 
     @Column({ default: false })
-    emailConfirmed: boolean;
+    EmailConfirmed: boolean;
 
     @Column()
-    passwordHash: string;
+    PasswordHash: string;
 
     @Column({nullable: true})
-    phonenumberverificationcode?: string;
+    PhoneNumberVerificationCode?: string;
 
     @Column({nullable: true})
-    emailverificationtoke?: string;
+    EmailVerificationToken?: string;
 
     @Column({nullable: true})
-    dob?: Date
+    DOB?: Date;
 
     @Column({default: false})
-    accountLock?: boolean;
+    LockoutEnabled:	boolean;
 
-    @OneToMany(type => EmailVerificationEntity, email => email.user)
+    @Column({nullable: true})
+    LockoutEndDateUtc?: Date;
+
+    @Column({default: 0})
+    AccessFailedCount:	number
+
+    @Column({ type: 'enum', enum: RoleType, default: RoleType.USER })
+    Role: RoleType;
+
+    @OneToMany(type => EmailVerificationEntity, email => email.User)
     EmailVerifications: EmailVerificationEntity[];
 
-    @OneToMany(type => SmsVerificationEntity, sms => sms.user)
+    @OneToMany(type => SmsVerificationEntity, sms => sms.User)
     SmsVerifications: SmsVerificationEntity[];
-    
+
+    @OneToMany(type => AuditTrail, trail => trail.User)
+    AuditTrails: AuditTrail[];
 }

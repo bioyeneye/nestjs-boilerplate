@@ -7,12 +7,11 @@ import {
     Post,
     UseGuards,
     UseInterceptors,
-    Req,
+    Req, HttpException,
 } from '@nestjs/common';
 import { ApiTags, ApiOkResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
-import { LoginPayloadDto } from './dto/login_payload';
 import { UserLoginDto } from './dto/user_login.dto';
 import { UserDto } from '../user/dto/user.dto';
 import { TokenPayloadDto } from './dto/token_payload.dto';
@@ -22,6 +21,12 @@ import { AuthUserInterceptor } from 'src/shared/interceptors/auth-user-intercept
 import { AuthUser } from 'src/shared/decorators/auth-user.decorator';
 import { UserRegisterDto } from '../user/dto/user-register.dto';
 import { Request, json } from 'express';
+import {UserEmailVerificationDto, UserRequestEmailVerificationDto} from "./dto/user_email_verification.dto";
+
+interface UserCreatedResponse {
+    user: UserDto,
+    token: TokenPayloadDto
+}
 
 @Controller('auth')
 @ApiTags('auth')
@@ -37,13 +42,16 @@ export class AuthController {
     async userRegister(
         @Req() request: Request,
         @Body() userRegisterDto: UserRegisterDto,
-    ): Promise<UserDto> {
-        console.log(`request: ${request.ips}`);
+    ): Promise<UserCreatedResponse> {
         const createdUser = await this.userService.createUser(
             userRegisterDto,
         );
 
-        return new UserDto(createdUser);
+        const token = await this.authService.createToken(createdUser);
+        return  {
+            user: new UserDto(createdUser),
+            token: token
+        };
     }
 
     @Post('login')
@@ -58,6 +66,45 @@ export class AuthController {
         return token;
     }
 
+    @Post('verifyemail')
+    @HttpCode(HttpStatus.OK)
+    @ApiOkResponse({
+        type: TokenPayloadDto,
+        description: 'User info with access token',
+    })
+    async verifyemail(@Req() request: Request, @Body() model: UserEmailVerificationDto): Promise<any> {
+        const serviceResponse = await this.userService.verifyEmail(model.email, model.token);
+        if (serviceResponse.hasError && serviceResponse.hasError == true) {
+            throw new HttpException(
+                serviceResponse.errorMessage,
+                serviceResponse.httpStatus
+            );
+        }
+
+        return {
+            message: serviceResponse.data
+        };
+    }
+
+    @Post('requestemailverification')
+    @HttpCode(HttpStatus.OK)
+    @ApiOkResponse({
+        type: TokenPayloadDto,
+        description: 'User info with access token',
+    })
+    async requestEmailVerification(@Req() request: Request, @Body() model: UserRequestEmailVerificationDto): Promise<any> {
+        const serviceResponse = await this.userService.requestEmailVerification(model.email);
+        if (serviceResponse.hasError && serviceResponse.hasError == true) {
+            throw new HttpException(
+                serviceResponse.errorMessage,
+                serviceResponse.httpStatus
+            );
+        }
+
+        return {
+            message: serviceResponse.data
+        };
+    }
 
 
     @Get('me')

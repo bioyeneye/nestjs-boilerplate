@@ -1,6 +1,6 @@
-import { PrimaryGeneratedColumn } from "typeorm";
+import {BaseEntity, PrimaryGeneratedColumn} from "typeorm";
 
 export class BaseAutoModel{
     @PrimaryGeneratedColumn("uuid")
-    id: string;
+    Id: string;
 }

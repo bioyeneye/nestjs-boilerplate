@@ -85,8 +85,7 @@ export class PasswordValidation implements ValidatorConstraintInterface {
     }
  
     defaultMessage(args: ValidationArguments) {
-        var value = args.value;
-        console.log(args.constraints[0], args.value);
+        const value = args.value;
         if(!value) {
             return "";
         }
@@ -109,7 +108,7 @@ export class PasswordValidation implements ValidatorConstraintInterface {
             if(!containsSpecialCharacter(value)) return "special";
         }
 
-        return "heeeText ($value) is too short or too long!";
+        return "The Text ($value) is too short or too long!";
     }
  
 }

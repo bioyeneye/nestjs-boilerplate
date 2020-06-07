@@ -4,10 +4,10 @@ import { BeforeInsert, Column, BeforeUpdate } from "typeorm";
 export class BaseDateModel extends BaseAutoModel{
     
     @Column()
-    createdDate: Date;
+    CreatedDate: Date;
     
     @BeforeInsert()
     updateDatesBeforeInsert() {
-        this.createdDate = new Date();
+        this.CreatedDate = new Date();
     }
 }

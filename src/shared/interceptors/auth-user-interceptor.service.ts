@@ -15,7 +15,6 @@ export class AuthUserInterceptor implements NestInterceptor {
         const user = <UserEntity>request.user;
 
         AuthService.setAuthUser(user);
-
         return next.handle();
     }
 }

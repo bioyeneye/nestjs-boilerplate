@@ -1,27 +1,35 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
-import { DatabaseModule } from './database/database.module';
-import { EnvironmentConfigService } from './config/environment.config';
-import { AppConfigurationEnum } from './config/config.enum';
-import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './modules/auth/auth.module';
-import { UserModule } from './modules/user/user.module';
-import { AuthService } from './modules/auth/auth.service';
-import { JwtStrategy } from './modules/auth/jwt.strategy';
-import { contextMiddleware } from './shared/middleware/context.middelware';
-import { MailerModule } from '@nestjs-modules/mailer';
+import {Module, NestModule, MiddlewareConsumer, CacheModule} from '@nestjs/common';
+import {AppController} from './app.controller';
+import {AppService} from './app.service';
+import {ConfigModule} from '@nestjs/config';
+import {DatabaseModule} from './database/database.module';
+import {EnvironmentConfigService} from './config/environment.config';
+import {AppConfigurationEnum} from './config/config.enum';
+import {SharedModule} from './shared/shared.module';
+import {AuthModule} from './modules/auth/auth.module';
+import {UserModule} from './modules/user/user.module';
+import {JwtStrategy} from './modules/auth/jwt.strategy';
+import {contextMiddleware} from './shared/middleware/context.middelware';
+import {MailerModule} from '@nestjs-modules/mailer';
 
 @Module({
     controllers: [AppController],
-    providers: [AppService, EnvironmentConfigService, JwtStrategy],
+    providers: [
+        AppService,
+        EnvironmentConfigService,
+        JwtStrategy
+    ],
     imports: [
         ConfigModule.forRoot(),
         DatabaseModule.forRoot(),
         SharedModule,
         AuthModule,
-        UserModule,
+        UserModule.forRoot({
+            LockoutAccessCount: 3,
+            LockoutExpiryMinute: 10,
+            EmailConfirmationRequired: false,
+            EnableLockoutForNewUsers: true
+        }),
         MailerModule.forRootAsync({
             useFactory: () => ({
                 service: 'gmail',
@@ -32,11 +40,11 @@ import { MailerModule } from '@nestjs-modules/mailer';
                     //ignoreTLS: true, //process.env.SMTP_SECURE !== 'false',
                     auth: {
                         user: process.env.SMTP_AUTH_USER || '',
-                        pass: process.env.SMTP_AUTH_PASS || '',
+                        pass: process.env.SMTP_AUTH_PASS || 'Oauthserver11@',
                     },
                 },
                 defaults: {
-                    from: '"nest-boilerplate" <email@nestjsboilerplate.com>',
+                    from: '"nest-boilerplate "<email@nestjsboilerplate.com>',
                 },
                 template: {},
             }),
@@ -48,9 +56,7 @@ export class AppModule implements NestModule {
     static port: number | string;
     static isDev: boolean;
 
-    constructor(
-        private readonly _configurationService: EnvironmentConfigService,
-    ) {
+    constructor(private readonly _configurationService: EnvironmentConfigService) {
         AppModule.port = AppModule.normalizePort(
             _configurationService.get(AppConfigurationEnum.PORT),
         );

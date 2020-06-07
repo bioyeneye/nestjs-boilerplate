@@ -1,6 +1,7 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
-import { ApiException } from '../models/api-exception.model';
+import {ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus, Logger} from '@nestjs/common';
 import { ResponseError } from '../models/success-response.model';
+
+const logger = new Logger();
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -16,7 +17,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
             }
         }
 
-        var errorFormatted: ResponseError = {
+        const errorFormatted: ResponseError = {
             statusCode: error.getStatus(),
             error: error.response.name || error.response.error || error.name,
             message: error.response.message || error.response || error.message,
@@ -26,7 +27,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
             data: null,
             errorMessage: error.response.message || error.response || error.message,
             success: false
-        }
+        };
+
+        logger.error(
+            JSON.stringify(errorFormatted)
+        );
 
         res.status(error.getStatus()).json(errorFormatted);
     }

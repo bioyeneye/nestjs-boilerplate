@@ -13,7 +13,7 @@ import {
 import { Column } from 'typeorm';
 import { PasswordValidation, PasswordValidationRequirement } from 'class-validator-password-check'
 
-var passwordRequirement: PasswordValidationRequirement = {
+const passwordRequirement: PasswordValidationRequirement = {
     mustContainLowerLetter: true,
     mustContainNumber: true,
     mustContainSpecialCharacter: true,
@@ -45,7 +45,6 @@ export class UserRegisterDto {
     readonly password: string;
 
     @Column()
-    //@IsPhoneNumber('ZZ')
     @IsOptional()
     @ApiProperty()
     phoneNumber: string;

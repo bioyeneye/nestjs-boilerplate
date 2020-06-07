@@ -1,17 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import {BadRequestException, Injectable} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PATH_METADATA } from '@nestjs/common/constants';
 import { UserDto } from '../user/dto/user.dto';
 import { UserService } from '../user/user.service';
 import { TokenPayloadDto } from './dto/token_payload.dto';
 import { UserLoginDto } from './dto/user_login.dto';
 import { EncryptionService } from 'src/shared/services/encryption.service';
 import { UserEntity } from 'src/database/entities/user.entity';
-import { UserNotFoundException } from 'src/shared/exception/user-not-found.exception';
 import { EnvironmentConfigService } from 'src/config/environment.config';
 import { AppConfigurationEnum } from 'src/config/config.enum';
 import { ContextService } from 'src/shared/services/context.service';
-import { AuthController } from './auth.controller';
+
+const lockOutTimes = 3;
 
 @Injectable()
 export class AuthService {
@@ -24,8 +23,6 @@ export class AuthService {
     ) {}
 
     async createToken(user: UserEntity | UserDto): Promise<TokenPayloadDto> {
-        // let routePath = Reflect.getMetadata(PATH_METADATA, AuthController);
-        // console.log(routePath);
         return new TokenPayloadDto({
             expiresIn: parseInt(
                 this.configService.get(
@@ -33,15 +30,16 @@ export class AuthService {
                 ),
             ),
             accessToken: await this.jwtService.signAsync({
-                sub: user.id,
+                sub: user.Id,
                 iss: '',
-                name: `${user.firstName} ${user.lastName}`,
+                name: `${user.FirstName} ${user.LastName}`,
                 data: {
-                    firstname: user.firstName,
-                    lastname: user.lastName,
+                    firstname: user.FirstName,
+                    lastname: user.LastName,
                     picture: '',
-                    phonenumber: user.phoneNumber,
-                    username: user.userName
+                    phonenumber: user.PhoneNumber,
+                    username: user.UserName,
+                    role: user.Role
                 },
             }),
         });
@@ -49,16 +47,41 @@ export class AuthService {
 
     async validateUser(userLoginDto: UserLoginDto): Promise<UserEntity> {
         const user = await this.userService.findOne({
-            email: userLoginDto.email,
+            Email: userLoginDto.email,
         });
 
         const isPasswordValid = await EncryptionService.validateHash(
             userLoginDto.password,
-            user && user.passwordHash,
+            user && user.PasswordHash,
         );
 
-        if (!user || !isPasswordValid) {
-            throw new UserNotFoundException();
+        if (!user) {
+            throw new BadRequestException("User credential is invalid");
+        }
+
+        if (!isPasswordValid) {
+            if (user.LockoutEnabled) {
+
+                if (user.LockoutEndDateUtc > new Date()) {
+                    //todo: put the remaining time there
+                    throw new BadRequestException("Sorry your account still locked");
+                }
+
+                const accessFailedCount = await this.userService.getAccessFailedCount(user);
+                if (accessFailedCount == lockOutTimes){
+                    throw new BadRequestException("Sorry your account is locked due to the wrong credentials provided, you can try after five(5) minutes");
+                }
+
+                await this.userService.processUserAccountLock(user);
+                throw new BadRequestException("User credential is invalid");
+            }
+            throw new BadRequestException("User credential is invalid");
+        }
+
+        const hasUserConfirmedEmail = await this.userService.hasUserVerifiedEmail(user);
+
+        if (!hasUserConfirmedEmail){
+            throw new BadRequestException("User need to confirm email before the system can authorize access.")
         }
 
         return user;

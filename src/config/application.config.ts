@@ -13,6 +13,7 @@ export class ApplicationConfiguration {
             optionsSuccessStatus: 200,
             exposedHeaders: ['Authorization'],
           });
+        //app.use('trust proxy', 1)
         app.use(compression());
         app.use(morgan('combined'));
 

@@ -1,7 +1,7 @@
 {
-    "type": "mssql",
+    "type": "postgres",
     "host": "localhost",
-    "username": "sa",
+    "username": "postgres",
     "password": "Password1@",
     "database": "NestBoilerplate",
     "synchronize": false,

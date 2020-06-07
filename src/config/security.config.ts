@@ -1,7 +1,6 @@
 import { INestApplication } from "@nestjs/common";
 import * as RateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
-import * as csurf from 'csurf';
 import * as cookieParser from 'cookie-parser';
 
 export class SecurityConfig {
