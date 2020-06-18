@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="daadb391-4a19-4746-9436-c175f9879f62" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/00oooodocker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dbconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/service.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/services.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ormconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/ormconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/config.enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/config.enum.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/security.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/security.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/swagger.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/swagger.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/database.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/database.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/entities/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/entities/user.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/auth.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/jwt.strategy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/jwt.strategy.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/user/dto/user-register.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/user/dto/user-register.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/user/dto/user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/user/dto/user.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/user/user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/guards/roles.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/guards/roles.guard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/services/redis.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/services/redis.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/shared.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/shared.module.ts" afterDir="false" />
-    </list>
+    <list default="true" id="daadb391-4a19-4746-9436-c175f9879f62" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +60,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
+            <state relative-caret-position="194">
               <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
             </state>
           </provider>
@@ -186,18 +160,6 @@
               <caret line="8" column="25" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="25" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/database/entities/auditaction.entity.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="8" column="24" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#61#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -450,12 +412,12 @@
       <workItem from="1591529719658" duration="21316000" />
       <workItem from="1592336449509" duration="4244000" />
       <workItem from="1592373376273" duration="3486000" />
-      <workItem from="1592414852525" duration="10040000" />
+      <workItem from="1592414852525" duration="10216000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66349000" />
+    <option name="totallyTimeSpent" value="66525000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -468,21 +430,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.23319027" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.23319027" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" weight="0.32961586" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49928468" weight="0.58488226" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49928468" visible="true" weight="0.58364314" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5007153" side_tool="true" weight="0.3110285" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="TypeScript" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
-      <window_info anchor="bottom" id="Run" order="8" visible="true" weight="0.3283767" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.3283767" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.5006196" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -977,7 +938,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="194">
           <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
         </state>
       </provider>
