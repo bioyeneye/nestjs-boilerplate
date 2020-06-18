@@ -18,7 +18,5 @@ export class SecurityConfig {
             }),
         );
         app.use(cookieParser());
-        //app.use(csurf({ cookie: true }));
-
     }
 }

@@ -1,0 +1,46 @@
+version: '3.6'
+services:
+  database:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=testing
+      - POSTGRES_USER=testing
+      - POSTGRES_DB=testing
+    ports:
+      - 5432
+    expose:
+      - 5432
+    networks:
+      - testing-network
+
+  redis:
+    image: redis
+    ports:
+      - 6379
+    expose:
+      - 6379
+    networks:
+      - testing-network
+
+  backend:
+    build:
+      context: ../../../backend/
+      dockerfile: $PWD/Dockerfile
+    ports:
+      - 3000
+    environment:
+      - DB_USERNAME=testing
+      - DB_PASSWORD=testing
+      - DB_DATABASE=testing
+      - DB_HOST=database
+      - REDIS_HOST=redis
+      - WAIT_HOSTS: database:3306, redis:6379
+      - WAIT_HOSTS_TIMEOUT: 300
+    depends_on:
+      - database
+      - redis
+    networks:
+      - testing-network
+
+networks:
+  testing-network

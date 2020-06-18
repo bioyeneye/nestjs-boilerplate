@@ -24,7 +24,7 @@ export class UserService {
 
     async getUserByEmail(email: string) {
         return await this.userRepository.findOne({
-            where: { email },
+            where: { Email: email },
         });
     }
 
@@ -59,7 +59,7 @@ export class UserService {
 
         try {
             const user = this.userRepository.create({
-                ...userRegisterDto,
+                ...userRegisterDto.mapToUserEntity(),
                 EmailVerificationToken: this.userOptions.EmailConfirmationRequired
                     ? UtilService.GenerateUUID().replace("-", "")
                     : null,

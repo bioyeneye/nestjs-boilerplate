@@ -43,8 +43,12 @@ export class AuthController {
         @Req() request: Request,
         @Body() userRegisterDto: UserRegisterDto,
     ): Promise<UserCreatedResponse> {
+
+        const userDto = new UserRegisterDto();
+        Object.assign(userDto, userRegisterDto);
+
         const createdUser = await this.userService.createUser(
-            userRegisterDto,
+            userDto,
         );
 
         const token = await this.authService.createToken(createdUser);

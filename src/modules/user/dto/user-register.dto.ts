@@ -12,6 +12,7 @@ import {
 } from 'class-validator';
 import { Column } from 'typeorm';
 import { PasswordValidation, PasswordValidationRequirement } from 'class-validator-password-check'
+import {UserEntity} from "../../../database/entities/user.entity";
 
 const passwordRequirement: PasswordValidationRequirement = {
     mustContainLowerLetter: true,
@@ -21,6 +22,11 @@ const passwordRequirement: PasswordValidationRequirement = {
 }
 
 export class UserRegisterDto {
+
+    constructor(){
+        //this.mapToUserEntity = this.mapToUserEntity.bind(this);
+    }
+
     @IsString()
     @IsNotEmpty()
     @ApiProperty()
@@ -48,4 +54,13 @@ export class UserRegisterDto {
     @IsOptional()
     @ApiProperty()
     phoneNumber: string;
+
+    public mapToUserEntity() : UserEntity {
+        return new UserEntity({
+            FirstName: this.firstName,
+            PhoneNumber: this.phoneNumber,
+            LastName: this.lastName,
+            Email: this.email
+        });
+    }
 }

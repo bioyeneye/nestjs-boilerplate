@@ -10,7 +10,7 @@ export interface SwaggerDocumentationConfigModel {
 }
 
 const apimodel: SwaggerDocumentationConfigModel = {
-    title: process.env.SWAGGER_TITLE || 'API DOcumentation',
+    title: process.env.SWAGGER_TITLE || 'API Documentation',
     description:
         process.env.SWAGGER_Description || 'API documentation description',
     version: process.env.SWAGGER_version || 'v1',
@@ -32,6 +32,7 @@ export class SwaggerDocumentationConfig {
             .setVersion(apimodel.version)
             .addTag(apimodel.tags)
             .addBearerAuth()
+
             //.setBasePath('/api')
             .build();
 

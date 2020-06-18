@@ -8,6 +8,11 @@ import {AuditTrail} from "./audittrail.entity";
 @Entity({name: 'Users'})
 export class UserEntity extends BaseDateWithUpdateModel {
 
+    constructor(init?:Partial<UserEntity>) {
+        super();
+        Object.assign(this, init);
+    }
+
     @Column()
     UserName: string;
 
@@ -48,7 +53,7 @@ export class UserEntity extends BaseDateWithUpdateModel {
     LockoutEndDateUtc?: Date;
 
     @Column({default: 0})
-    AccessFailedCount:	number
+    AccessFailedCount:	number;
 
     @Column({ type: 'enum', enum: RoleType, default: RoleType.USER })
     Role: RoleType;

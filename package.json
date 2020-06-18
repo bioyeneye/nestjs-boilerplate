@@ -13,6 +13,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:debugnode": "nodemon --config nodemon-debug.json",
+    "prestart:prod": "rimraf dist && npm run build",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
@@ -24,7 +25,8 @@
     "migration:run": "ts-node node_modules/typeorm/cli.js migration:run -f ormconfig",
     "migration:revert": "ts-node node_modules/typeorm/cli.js migration:revert -f ormconfig",
     "migration:create": "ts-node node_modules/typeorm/cli.js migration:create -f ormconfig -d src/database/migrations -n",
-    "schema:drop": "ts-node node_modules/typeorm/cli.js schema:drop -f ormconfig"
+    "schema:drop": "ts-node node_modules/typeorm/cli.js schema:drop -f ormconfig",
+    "migration:run:prod": "yarn tsc && yarn ts-node ./node_modules/typeorm/cli.js migration:run"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.4.2",
@@ -103,5 +105,8 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "engines": {
+    "node": "12.16.2"
   }
 }

@@ -1,14 +1,14 @@
 import {Inject, Injectable, Logger} from "@nestjs/common";
 import redis, { RedisClient } from 'redis';
 import {promisify} from "util";
+import {ProviderEnum} from "../../config/config.enum";
 
-export const REDIS_CACHE = 'REDIS_CACHE';
 
 @Injectable()
 export class RedisService {
 
-    constructor(@Inject(REDIS_CACHE) private client: RedisClient) {
-        this.initRedis();
+    constructor(@Inject(ProviderEnum.REDIS) private client: RedisClient) {
+        //this.initRedis();
     }
 
     private initRedis() {

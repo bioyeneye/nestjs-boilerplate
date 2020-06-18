@@ -32,6 +32,6 @@ export class UserDto {
         this.Email = user.Email;
         this.PhoneNumber = user.PhoneNumber;
         this.UserName = user.UserName;
-        this.Role = user.Role;
+        //this.Role = user.Role;
     }
 }

@@ -11,19 +11,24 @@ import {UserModule} from './modules/user/user.module';
 import {JwtStrategy} from './modules/auth/jwt.strategy';
 import {contextMiddleware} from './shared/middleware/context.middelware';
 import {MailerModule} from '@nestjs-modules/mailer';
+import {RedisModule} from "nestjs-redis";
+import {ServicesModule} from "./services/services.module";
 
 @Module({
     controllers: [AppController],
     providers: [
         AppService,
-        EnvironmentConfigService,
-        JwtStrategy
+        JwtStrategy,
     ],
     imports: [
         ConfigModule.forRoot(),
         DatabaseModule.forRoot(),
         SharedModule,
         AuthModule,
+        ServicesModule.forRoot({
+            flutterwave: {PUBLIC_KEY: "FLWPUBK_TEST-bf7b89697b6506628d22dff9875c319d-X", SECRET_KEY: "FLWSECK_TEST-048a0adfa70f9a464531d087f318a0cc-X"},
+            paystack: {PUBLIC_KEY: "", SECRET_KEY: ""}
+        }),
         UserModule.forRoot({
             LockoutAccessCount: 3,
             LockoutExpiryMinute: 10,
@@ -49,6 +54,12 @@ import {MailerModule} from '@nestjs-modules/mailer';
                 template: {},
             }),
         }),
+        RedisModule.register({
+            name: "nestjs",
+            connectionName: "nestjs",
+            port: 6379,
+            url: 'redis://localhost:6379',
+        })
     ],
 })
 export class AppModule implements NestModule {

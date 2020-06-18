@@ -9,6 +9,7 @@ import { UserEntity } from 'src/database/entities/user.entity';
 import { EnvironmentConfigService } from 'src/config/environment.config';
 import { AppConfigurationEnum } from 'src/config/config.enum';
 import { ContextService } from 'src/shared/services/context.service';
+import {RedisService} from "nestjs-redis";
 
 const lockOutTimes = 3;
 
@@ -20,6 +21,7 @@ export class AuthService {
         public readonly jwtService: JwtService,
         public readonly configService: EnvironmentConfigService,
         public readonly userService: UserService,
+        private redisService: RedisService,
     ) {}
 
     async createToken(user: UserEntity | UserDto): Promise<TokenPayloadDto> {
