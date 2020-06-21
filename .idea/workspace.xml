@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="daadb391-4a19-4746-9436-c175f9879f62" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/oldcommands" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/78package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,17 +42,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="29" column="96" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="96" />
+            <state relative-caret-position="482">
+              <caret line="28" column="81" selection-start-line="28" selection-start-column="81" selection-end-line="28" selection-end-column="81" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/oldcommands">
+        <entry file="file://$PROJECT_DIR$/78package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="347">
+              <caret line="28" column="69" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -99,7 +99,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/database/migrations/1591511980075-addedLockoutFieldForUsers.ts" />
         <option value="$PROJECT_DIR$/src/database/migrations/1591411966013-InitialMigration.ts" />
         <option value="$PROJECT_DIR$/src/shared/services/encryption.service.ts" />
         <option value="$PROJECT_DIR$/dist/config/application.config.js" />
@@ -148,8 +147,9 @@
         <option value="$PROJECT_DIR$/.env.sample" />
         <option value="$PROJECT_DIR$/ormconfig.json" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/oldcommands" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/78package.json" />
       </list>
     </option>
   </component>
@@ -202,14 +202,14 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/database/entities" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/shared/guards" />
       <recent name="$PROJECT_DIR$/src/shared" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/database/entities" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -280,12 +280,12 @@
       <workItem from="1592336449509" duration="4244000" />
       <workItem from="1592373376273" duration="3486000" />
       <workItem from="1592414852525" duration="10994000" />
-      <workItem from="1592718279497" duration="1845000" />
+      <workItem from="1592718279497" duration="2240000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69148000" />
+    <option name="totallyTimeSpent" value="69543000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -302,10 +302,10 @@
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.2360515" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.2360515" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" weight="0.32961586" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49928468" visible="true" weight="0.3370508" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49928468" visible="true" weight="0.3370508" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5007153" side_tool="true" weight="0.3110285" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
@@ -403,12 +403,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.dockerignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/redis/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/shared/services/redis.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -787,17 +781,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="29" column="96" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/oldcommands">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="28" column="81" selection-start-line="28" selection-start-column="81" selection-end-line="28" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/78package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="28" column="69" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
         </state>
       </provider>
     </entry>
