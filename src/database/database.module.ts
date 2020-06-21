@@ -53,12 +53,12 @@ const entities = [
                 "migrationsDir": "src/database/migrations",
                 "subscribersDir": "src/database/subscribers"
             },
-            ssl: true,
-            extra: {
-                ssl: {
-                    rejectUnauthorized: false,
-                },
-            },
+            // ssl: true,
+            // extra: {
+            //     ssl: {
+            //         rejectUnauthorized: false,
+            //     },
+            // },
         }),
         inject: [EnvironmentConfigService]
     }),],
