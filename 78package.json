@@ -8,7 +8,7 @@
   "scripts": {
     "tsc": "tsc",
     "prebuild": "rimraf dist",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -26,8 +26,7 @@
     "migration:run": "ts-node node_modules/typeorm/cli.js migration:run -f ormconfig",
     "migration:revert": "ts-node node_modules/typeorm/cli.js migration:revert -f ormconfig",
     "migration:create": "ts-node node_modules/typeorm/cli.js migration:create -f ormconfig -d src/database/migrations -n",
-    "schema:drop": "ts-node node_modules/typeorm/cli.js schema:drop -f ormconfig",
-    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
+    "schema:drop": "ts-node node_modules/typeorm/cli.js schema:drop -f ormconfig"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.4.2",
