@@ -23,10 +23,10 @@
     "migrationsDir": "src/database/migrations",
     "subscribersDir": "src/database/subscribers"
   },
+  "ssl": true,
   "extra": {
-    "ssl": true
-  },
-  "ssl": {
-    "ca": ""
+    "ssl": {
+      "rejectUnauthorized": false
+    }
   }
 }
