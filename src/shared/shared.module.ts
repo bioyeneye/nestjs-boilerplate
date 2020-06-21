@@ -2,8 +2,8 @@ import {CacheModule, Global, HttpModule, Module} from '@nestjs/common';
 import {EmailSenderService} from './services/emailsender.service';
 import {RedisService} from "./services/redis.service";
 import { RedisClient } from 'redis';
-import {ProviderEnum} from "../config/config.enum";
-import {EnvironmentConfigService} from "../config/environment.config";
+import {ProviderEnum} from "./config/config.enum";
+import {EnvironmentConfigService} from "./config/environment.config";
 
 const redisProvider = {
     provide: ProviderEnum.REDIS,

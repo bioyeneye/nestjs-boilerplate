@@ -1,9 +1,9 @@
 {
   "type": "postgres",
-  "host": "ec2-34-200-72-77.compute-1.amazonaws.com",
-  "username": "kixfpmwtwogsze",
-  "password": "d22866e9bcaf005b86636d77704b6e1f4109920132dfdfaceadb460786910b4d",
-  "database": "dck797a77jhlau",
+  "host": "localhost",
+  "username": "postgres",
+  "password": "Password1@",
+  "database": "NestBoilerplate",
   "synchronize": false,
   "logging": true,
   "migrationsTableName": "custom_migration_table",

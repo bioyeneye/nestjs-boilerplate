@@ -5,7 +5,7 @@ import {
     ExpressAdapter,
     NestExpressApplication,
 } from '@nestjs/platform-express';
-import { ApplicationConfiguration } from './config/application.config';
+import { ApplicationConfiguration } from './shared/config/application.config';
 import { HttpExceptionFilter } from './shared/filters/http-exception.filter';
 import SlackHook = require("winston-slack-webhook-transport");
 import * as winston from "winston";
@@ -55,7 +55,6 @@ const logger = winston.createLogger({
 });
 
 async function bootstrap() {
-    //const app = await NestFactory.create(AppModule);
     const app = await NestFactory.create<NestExpressApplication>(
         AppModule,
         new ExpressAdapter(),

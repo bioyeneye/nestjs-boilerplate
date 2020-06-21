@@ -1,7 +1,7 @@
 import {Inject, Injectable, Logger} from "@nestjs/common";
 import redis, { RedisClient } from 'redis';
 import {promisify} from "util";
-import {ProviderEnum} from "../../config/config.enum";
+import {ProviderEnum} from "../config/config.enum";
 
 
 @Injectable()

@@ -1,26 +1,9 @@
 import {Module, DynamicModule} from '@nestjs/common';
 import {subscribers} from './subscribers';
 import {TypeOrmModule} from '@nestjs/typeorm';
-import {EnvironmentConfigService} from "../config/environment.config";
-import {DatabaseConfigurationEnum} from "../config/config.enum";
+import {EnvironmentConfigService} from "../shared/config/environment.config";
+import {DatabaseConfigurationEnum} from "../shared/config/config.enum";
 import {SharedModule} from "../shared/shared.module";
-import {UserEntity} from "./entities/user.entity";
-import {SmsVerificationEntity} from "./entities/sms-verification.entity";
-import {EmailVerificationEntity} from "./entities/email-verification.entity";
-import {AuditTrail} from "./entities/audittrail.entity";
-import {AuditSection} from "./entities/auditsection.entity";
-import {AuditAction} from "./entities/auditaction.entity";
-
-
-
-const entities = [
-    UserEntity,
-    AuditAction,
-    AuditSection,
-    AuditTrail,
-    EmailVerificationEntity,
-    SmsVerificationEntity
-]
 
 @Module({
     imports: [TypeOrmModule.forRootAsync({

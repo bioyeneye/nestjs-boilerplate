@@ -10,18 +10,20 @@ import {
     Req, HttpException,
 } from '@nestjs/common';
 import { ApiTags, ApiOkResponse, ApiBearerAuth } from '@nestjs/swagger';
-import { UserService } from '../user/user.service';
-import { AuthService } from './auth.service';
-import { UserLoginDto } from './dto/user_login.dto';
-import { UserDto } from '../user/dto/user.dto';
-import { TokenPayloadDto } from './dto/token_payload.dto';
+import { UserService } from '../../services/app_services/user.service';
+import { AuthService } from '../../services/app_services/auth.service';
 import { AuthGuard } from '@nestjs/passport';
 import { UserEntity } from 'src/database/entities/user.entity';
 import { AuthUserInterceptor } from 'src/shared/interceptors/auth-user-interceptor.service';
 import { AuthUser } from 'src/shared/decorators/auth-user.decorator';
-import { UserRegisterDto } from '../user/dto/user-register.dto';
-import { Request, json } from 'express';
-import {UserEmailVerificationDto, UserRequestEmailVerificationDto} from "./dto/user_email_verification.dto";
+import { Request } from 'express';
+import {
+    TokenPayloadDto,
+    UserEmailVerificationDto,
+    UserLoginDto,
+    UserRequestEmailVerificationDto
+} from "../../model/auth.dto";
+import {UserDto, UserRegisterDto} from "../../model/user.dto";
 
 interface UserCreatedResponse {
     user: UserDto,

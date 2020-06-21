@@ -1,15 +1,14 @@
 import {BadRequestException, Injectable} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserDto } from '../user/dto/user.dto';
-import { UserService } from '../user/user.service';
-import { TokenPayloadDto } from './dto/token_payload.dto';
-import { UserLoginDto } from './dto/user_login.dto';
+import { UserService } from './user.service';
 import { EncryptionService } from 'src/shared/services/encryption.service';
 import { UserEntity } from 'src/database/entities/user.entity';
-import { EnvironmentConfigService } from 'src/config/environment.config';
-import { AppConfigurationEnum } from 'src/config/config.enum';
+import { EnvironmentConfigService } from 'src/shared/config/environment.config';
+import { AppConfigurationEnum } from 'src/shared/config/config.enum';
 import { ContextService } from 'src/shared/services/context.service';
 import {RedisService} from "nestjs-redis";
+import {TokenPayloadDto, UserLoginDto} from "../../model/auth.dto";
+import {UserDto} from "../../model/user.dto";
 
 const lockOutTimes = 3;
 

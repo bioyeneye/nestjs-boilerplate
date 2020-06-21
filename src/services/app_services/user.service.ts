@@ -1,21 +1,22 @@
 import {BadRequestException, HttpException, HttpStatus, Inject, Injectable} from '@nestjs/common';
-import {UserRepository} from './user.repository';
+import {UserRepository} from '../../repositories/app_repositories/user.repository';
 import {FindConditions} from 'typeorm';
 import {UserEntity} from 'src/database/entities/user.entity';
 import {EncryptionService} from 'src/shared/services/encryption.service';
-import {UserRegisterDto} from './dto/user-register.dto';
 import {EmailSenderService} from 'src/shared/services/emailsender.service';
 import {UtilService} from 'src/shared/services/util.service';
 import "../../shared/utils/date-ext";
-import {UserOptions} from "./user.module";
 import {ServiceResponse, ServiceResponseInterface} from "../../shared/interface/service-response.interface";
+import {UserRegisterDto} from "../../model/user.dto";
+import {UserOptions} from "../service.config";
+import {USEROPTIONS} from "../serviceoptions";
 
 @Injectable()
 export class UserService {
     constructor(
         public readonly userRepository: UserRepository,
         private readonly emailSenderService: EmailSenderService,
-        @Inject('USER-OPTIONS') private userOptions: UserOptions
+        @Inject(USEROPTIONS) private userOptions: UserOptions
     ) {}
 
     findOne(findData: FindConditions<UserEntity>): Promise<UserEntity> {

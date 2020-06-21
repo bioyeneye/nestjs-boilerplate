@@ -1,2 +1,0 @@
-"migration:run:prod": "yarn tsc && yarn ts-node ./node_modules/typeorm/cli.js migration:run"
-

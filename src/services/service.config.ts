@@ -8,7 +8,15 @@ export interface PaystackConfig {
     PUBLIC_KEY: string;
 }
 
+export interface UserOptions {
+    LockoutAccessCount: number;
+    LockoutExpiryMinute: number;
+    EmailConfirmationRequired: boolean;
+    EnableLockoutForNewUsers: boolean;
+}
+
 export interface ServiceConfig {
-    flutterwave: FlutterwaveConfig;
-    paystack: PaystackConfig;
+    flutterwave?: FlutterwaveConfig;
+    paystack?: PaystackConfig;
+    userOptions?: UserOptions
 }
