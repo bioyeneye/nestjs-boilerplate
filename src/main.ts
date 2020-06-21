@@ -68,7 +68,7 @@ async function bootstrap() {
     app.useGlobalFilters(new HttpExceptionFilter());
     app.useGlobalPipes(new ValidationPipe());
 
-    await app.listen(AppModule.port, () => {
+    await app.listen(process.env.PORT|| 5100, () => {
         logger.info("This should now appear on Slack", {error: {message: "hello error"}});
         Logger.log(
             `Server running on http://localhost:${AppModule.port}`,

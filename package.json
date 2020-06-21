@@ -27,6 +27,7 @@
     "migration:revert": "ts-node node_modules/typeorm/cli.js migration:revert -f ormconfig",
     "migration:create": "ts-node node_modules/typeorm/cli.js migration:create -f ormconfig -d src/database/migrations -n",
     "schema:drop": "ts-node node_modules/typeorm/cli.js schema:drop -f ormconfig",
+    "migration:run:prod": "yarn tsc && yarn ts-node ./node_modules/typeorm/cli.js migration:run",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
