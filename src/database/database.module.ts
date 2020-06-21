@@ -27,11 +27,13 @@ const entities = [
         imports: [SharedModule],
         useFactory: async (configService: EnvironmentConfigService) => ({
             type: 'postgres' as 'postgres',
-            host: configService.get(DatabaseConfigurationEnum.DBHOST),
-            port: Number(configService.get(DatabaseConfigurationEnum.DBPORT)),
-            username: configService.get(DatabaseConfigurationEnum.DBUSERNAME),
-            password: configService.get(DatabaseConfigurationEnum.DBPASSWORD),
-            database:  configService.get(DatabaseConfigurationEnum.DBNAME),
+            url: process.env.DATABASE_URL ||
+                `postgres://${configService.get(DatabaseConfigurationEnum.DBUSERNAME)}:${configService.get(DatabaseConfigurationEnum.DBPASSWORD)}@${configService.get(DatabaseConfigurationEnum.DBHOST)}:${configService.get(DatabaseConfigurationEnum.DBHOST)}/${configService.get(DatabaseConfigurationEnum.DBNAME)}`,
+            // host: configService.get(DatabaseConfigurationEnum.DBHOST),
+            // port: Number(configService.get(DatabaseConfigurationEnum.DBPORT)),
+            // username: configService.get(DatabaseConfigurationEnum.DBUSERNAME),
+            // password: configService.get(DatabaseConfigurationEnum.DBPASSWORD),
+            // database:  configService.get(DatabaseConfigurationEnum.DBNAME),
             entities: [
                 "./src/database/entities/**/*.entity.js",
                 "./dist/database/entities/**/*.entity.js"
@@ -53,12 +55,12 @@ const entities = [
                 "migrationsDir": "src/database/migrations",
                 "subscribersDir": "src/database/subscribers"
             },
-            // ssl: true,
-            // extra: {
-            //     ssl: {
-            //         rejectUnauthorized: false,
-            //     },
-            // },
+            ssl: true,
+            extra: {
+                ssl: {
+                    rejectUnauthorized: false,
+                },
+            },
         }),
         inject: [EnvironmentConfigService]
     }),],
