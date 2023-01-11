@@ -47,7 +47,7 @@
     "bcryptjs": "^2.4.3",
     "cache-manager": "^3.3.0",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.12.1",
+    "class-validator": "^0.14.0",
     "class-validator-password-check": "^1.0.7",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
